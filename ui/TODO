@@ -1,0 +1,7 @@
+[x] - Read Google docs from NodeJS
+
+[ ] - Create a web app, that includes the sheets lib and everything. When you load it, display sheets data.
+
+[ ] - Create mechanism to replicate sheets data in to the browser sqlite engine.
+
+[ ] - visualize, profit, etc.
