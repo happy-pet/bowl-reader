@@ -1,3 +1,5 @@
+#include "quicksort.c"
+
 #define PRINTF_BUFFER_SIZE 128
 
 int enablePin = D0;
@@ -12,28 +14,6 @@ int slowTolerancePriorToEvent = 4;
 #define LARGE_READINGS_LENGTH 500
 
 int readingBuffer[LARGE_READINGS_LENGTH];
-
-void Serial_printf(const char* fmt, ...) {
-  char buff[PRINTF_BUFFER_SIZE];
-  va_list args;
-  va_start(args, fmt);
-  vsnprintf(buff, PRINTF_BUFFER_SIZE, fmt, args);
-  va_end(args);
-  Serial.println(buff);
-}
-
-
-void sortInts(int buffer[], int bufferLen){
-  for(int i = 0; i <= bufferLen; i++){
-    for(int j = 0; j <= bufferLen - i; j++){
-      if(buffer[j] > buffer[j+1]){
-        int temp = buffer[j];
-        buffer[j] = buffer[j+1];
-        buffer[j+1] = temp;
-      }
-    }
-  }
-}
 
 int getReading(int readingsLen){
   if (readingsLen > sizeof(readingBuffer)) {
@@ -50,7 +30,7 @@ int getReading(int readingsLen){
     readingBuffer[i] = analogRead(loadCellPin);
   }
   digitalWrite(enablePin, LOW);
-  sortInts(readingBuffer, readingsLen);
+  quickSort(readingBuffer, 0, readingsLen - 1);
   int median = readingBuffer[(readingsLen / 2) - 1];
   Serial.printf("Median reading is %d\n", median);
   return median;
@@ -110,8 +90,6 @@ void send(String message,int data){
 void setup() {
   pinMode(enablePin, OUTPUT);
   analogRead(loadCellPin);
-  //pinMode(loadCellPin, AN_INPUT);//this isn't supposed to be used for analogRead, as stated in the docs
-
   digitalWrite(enablePin, LOW);
 
   Serial.begin(9600);
