@@ -4,7 +4,8 @@ var creds = require("./client_secret.json");
 var ServiceAccount = googlesheets.ServiceAccount;
 var GoogleSheet = googlesheets.GoogleSheet;
  
-const GOOGLE_SPREADSHEETID = '197Trqsyt9pmfYgvUC5iUPDPfVIoZ2FoxgsGnkm2Pl2c';
+// const GOOGLE_SPREADSHEETID = '197Trqsyt9pmfYgvUC5iUPDPfVIoZ2FoxgsGnkm2Pl2c';
+const GOOGLE_SPREADSHEETID = '1a_4FFy5-Mctn_RF5zfT5SAWgrkvcO36Qig4WpGVwgDI';
 const GOOGLE_SHEETID = 0; // update placeholder value
  
 var authClass = new ServiceAccount(creds);
